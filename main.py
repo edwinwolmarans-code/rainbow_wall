@@ -1,4 +1,10 @@
 import pygame
+import random
+
+BACKGROUND_COLOUR = (13, 2, 8)
+TEXT_COLOURS = [(0, 59, 0), (0, 142, 17), (0, 255, 65)]
+
+CHAR_LIST = []
 
 # pygame setup
 pygame.init()
@@ -7,6 +13,21 @@ WIDTH = display_size[0][0]
 HEIGHT = display_size[0][1]
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 running = True
+
+# character set up
+chars = []
+
+# Japanese characters
+for i in range(96):
+    symbol = chr(int('030A0', 16) + i)
+    chars.append(symbol)
+
+# Latin characters
+for i in range(102):
+    symbol = chr(int('0021') + i)
+    chars.append(symbol)
+
+print(chars)
 
 
 while running:
