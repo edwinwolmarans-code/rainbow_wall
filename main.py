@@ -27,12 +27,15 @@ for i in range(102):
     symbol = chr(int('0021') + i)
     chars.append(symbol)
 
-print(chars)
-
+# Render text on screen
+font = pygame.font.SysFont(None, 24)
+letter = font.render(chars[140], True, TEXT_COLOURS[1])
 
 while running:
 
     screen.fill("black")
+
+    screen.blit(letter, (20, 20))
 
     key = pygame.key.get_pressed()
     if key[pygame.K_ESCAPE]:
