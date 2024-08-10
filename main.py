@@ -1,12 +1,15 @@
 import pygame
 import random
 
-BACKGROUND_COLOUR = (247, 249, 242)
-TEXT_COLOURS = [(83, 191, 157), (249, 76, 102), (189, 66, 145), (255, 197, 77),
+BACKGROUND_COLOUR = (245, 247, 248)
+TEXT_COLOURS = [
+                (83, 191, 157), (249, 76, 102), (189, 66, 145), (255, 197, 77),
                 (55, 226, 213), (89, 6, 150), (199, 10, 128), (251, 203, 10),
-                (180, 255, 159), (249, 255, 164), (255, 213, 158), (255, 161, 161)]
-
-print(len(TEXT_COLOURS))
+                (180, 255, 159), (249, 255, 164), (255, 213, 158), (255, 161, 161),
+                (17, 20, 76), (58, 150, 121), (250, 188, 96), (225, 98, 98),
+                (8, 95, 99), (73, 190, 183), (250, 207, 90), (255, 89, 89),
+                (163, 67, 67), (233, 200, 116), (251, 248, 221), (192, 214, 232)
+                ]
 
 CHAR_LIST = []
 
@@ -16,9 +19,6 @@ display_size = pygame.display.get_desktop_sizes()
 WIDTH = display_size[0][0]
 HEIGHT = display_size[0][1]
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-
-clock = pygame.time.Clock()
-FPS = 15
 running = True
 
 # character set up
@@ -37,16 +37,15 @@ for i in range(102):
 
 # Render text on screen while changing letter and colour
 def get_letter():
-    colour_picker = random.randint(0, 11)
+    colour_picker = random.randint(0, 23)
     letter_picker = random.randint(0, len(chars)-1)
-    for _ in range(5):
+    for _ in range(15):
         font = pygame.font.SysFont('hiraginosansgb', 20)
         letter = font.render(chars[letter_picker], True, TEXT_COLOURS[colour_picker])
         return letter
 
 
 while running:
-    clock.tick(FPS)
     x = -10
     y = -20
     screen.fill(BACKGROUND_COLOUR)
