@@ -1,8 +1,12 @@
 import pygame
 import random
 
-BLACK = (13, 2, 8)
-TEXT_COLOURS = [(0, 59, 0), (0, 142, 17), (0, 255, 65)]
+BACKGROUND_COLOUR = (247, 249, 242)
+TEXT_COLOURS = [(83, 191, 157), (249, 76, 102), (189, 66, 145), (255, 197, 77),
+                (55, 226, 213), (89, 6, 150), (199, 10, 128), (251, 203, 10),
+                (180, 255, 159), (249, 255, 164), (255, 213, 158), (255, 161, 161)]
+
+print(len(TEXT_COLOURS))
 
 CHAR_LIST = []
 
@@ -14,7 +18,7 @@ HEIGHT = display_size[0][1]
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 clock = pygame.time.Clock()
-FPS = 1
+FPS = 15
 running = True
 
 # character set up
@@ -30,27 +34,22 @@ for i in range(102):
     symbol = chr(int('0021') + i)
     chars.append(symbol)
 
-# Render text on screen
-# def get_letter():
-#     font = pygame.font.SysFont(None, 24)
-#     letter = font.render(chars[140], True, TEXT_COLOURS[1])
-#     return letter
-
 
 # Render text on screen while changing letter and colour
 def get_letter():
-    colour_picker = random.randint(0, 2)
+    colour_picker = random.randint(0, 11)
     letter_picker = random.randint(0, len(chars)-1)
     for _ in range(5):
         font = pygame.font.SysFont('hiraginosansgb', 20)
         letter = font.render(chars[letter_picker], True, TEXT_COLOURS[colour_picker])
         return letter
 
+
 while running:
     clock.tick(FPS)
     x = -10
     y = -20
-    screen.fill(BLACK)
+    screen.fill(BACKGROUND_COLOUR)
 
     for _ in range(int(HEIGHT / 25)):
         screen.blit(get_letter(), (x, y))
@@ -60,7 +59,6 @@ while running:
         for _ in range(int(WIDTH / 25)):
             screen.blit(get_letter(), (x, y))
             x += 25
-
 
     key = pygame.key.get_pressed()
     if key[pygame.K_ESCAPE]:
@@ -73,7 +71,3 @@ while running:
     pygame.display.update()
 
 pygame.quit()
-
-# Press the green button in the gutter to run the script.
-# if __name__ == '__main__':
-#     print_hi('PyCharm')
