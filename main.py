@@ -1,7 +1,7 @@
 import pygame
 import random
 
-BACKGROUND_COLOUR = (13, 2, 8)
+BLACK = (13, 2, 8)
 TEXT_COLOURS = [(0, 59, 0), (0, 142, 17), (0, 255, 65)]
 
 CHAR_LIST = []
@@ -12,6 +12,9 @@ display_size = pygame.display.get_desktop_sizes()
 WIDTH = display_size[0][0]
 HEIGHT = display_size[0][1]
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+clock = pygame.time.Clock()
+FPS = 1
 running = True
 
 # character set up
@@ -44,10 +47,10 @@ def get_letter():
         return letter
 
 
-
 while running:
+    clock.tick(FPS)
     height = 20
-    screen.fill("black")
+    screen.fill(BLACK)
 
     # populate multiple letters in a column
     for _ in range(5):
