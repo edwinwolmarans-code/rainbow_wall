@@ -42,20 +42,25 @@ def get_letter():
     colour_picker = random.randint(0, 2)
     letter_picker = random.randint(0, len(chars)-1)
     for _ in range(5):
-        font = pygame.font.SysFont(None, 24)
+        font = pygame.font.SysFont('hiraginosansgb', 20)
         letter = font.render(chars[letter_picker], True, TEXT_COLOURS[colour_picker])
         return letter
 
-
 while running:
     clock.tick(FPS)
-    height = 20
+    x = -10
+    y = -20
     screen.fill(BLACK)
 
-    # populate multiple letters in a column
-    for _ in range(5):
-        screen.blit(get_letter(), (20, height))
-        height += 25
+    for _ in range(int(HEIGHT / 25)):
+        screen.blit(get_letter(), (x, y))
+
+        x = 0
+        y += 25
+        for _ in range(int(WIDTH / 25)):
+            screen.blit(get_letter(), (x, y))
+            x += 25
+
 
     key = pygame.key.get_pressed()
     if key[pygame.K_ESCAPE]:
