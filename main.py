@@ -28,14 +28,31 @@ for i in range(102):
     chars.append(symbol)
 
 # Render text on screen
-font = pygame.font.SysFont(None, 24)
-letter = font.render(chars[140], True, TEXT_COLOURS[1])
+# def get_letter():
+#     font = pygame.font.SysFont(None, 24)
+#     letter = font.render(chars[140], True, TEXT_COLOURS[1])
+#     return letter
+
+
+# Render text on screen while changing letter and colour
+def get_letter():
+    colour_picker = random.randint(0, 2)
+    letter_picker = random.randint(0, len(chars)-1)
+    for _ in range(5):
+        font = pygame.font.SysFont(None, 24)
+        letter = font.render(chars[letter_picker], True, TEXT_COLOURS[colour_picker])
+        return letter
+
+
 
 while running:
-
+    height = 20
     screen.fill("black")
 
-    screen.blit(letter, (20, 20))
+    # populate multiple letters in a column
+    for _ in range(5):
+        screen.blit(get_letter(), (20, height))
+        height += 25
 
     key = pygame.key.get_pressed()
     if key[pygame.K_ESCAPE]:
@@ -47,11 +64,8 @@ while running:
 
     pygame.display.update()
 
-
 pygame.quit()
-
 
 # Press the green button in the gutter to run the script.
 # if __name__ == '__main__':
 #     print_hi('PyCharm')
-
